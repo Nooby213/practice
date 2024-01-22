@@ -1,11 +1,12 @@
 def restructure_word(word, arr):
     for char in word:
-        if char in arr:
-            if char.isdecimal == True:
-                for i in arr.find(char):
-                    arr.pop()
-            else:
-                arr.remove(char)
+        if char.isdecimal() == True:
+            a = int(char)
+            while a:
+                arr.pop()
+                a -= 1
+        else:
+            arr.remove(char)
     return arr
 
 original_word = '코딩 공부는ㄴ 1일ㄹ 1커ㅓ밋ㅅ @@@#^()#_+!&~:"'
@@ -14,5 +15,5 @@ arr = []
 arr.extend(list(map(str,original_word)))
 print(arr)
 result = restructure_word(word, arr)
-print(arr)
+print(result)
 print(''.join(arr))
