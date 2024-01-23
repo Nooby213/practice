@@ -1,3 +1,4 @@
+from pprint import pprint
 user_data = [
     {
         'blood_group': 'AB',
@@ -299,36 +300,57 @@ black_list = [
     'Warren-Stewart',
 ]
 
-def create_user(list):
+def create_user(u_dict):
     user_list = []
-    x, y = is_validation(data)
-    for data in user_data:
-        if is_validation(data):
-            user_list.append(data)
-        if False in is_validation(data):
-            
-            
-            user_list.append(data)
-        if is_validation == 'blocked':
-            pass
-    print(f'잘못된 데이터로 구성된 유저의 수는 {len(False)}입니다.')
-    print(user_list)
-
-
+    false_num = 0
+    
+    for info in u_dict:
+        x, y = is_validation(info)
+        if x == 'blocked':
+            false_num += 1
+            continue
+        elif x == False:
+            false_num += 1
+            if type(y) == 'list':
+                for i in y:
+                    info[i] = 'None'
+            else:
+                info[y] = 'None'
+        user_list.append(info)
+    print(f'잘못된 데이터로 구성된 유저의 수는 {false_num} 입니다.')
+    return user_list
 
 def is_validation(data):
     false_list = []
-    if data['company'] not in black_list:
-        return 'blocked'
-    if (data['blood_types'] in blood_types and '@' in data['mail'] and 2 <= len(data['name']) <= 30 and len(data['website']) >= 1) == False:
-        if data['blood_types'] in blood_types:
-            false_list.append(data['blood_types'])
-        if '@' in data['mail']:
-            false_list.append(data['mail'])
-        if 2 <= len(data['name']) <= 30:
-            false_list.append(data['name'])
-        if len(data['website']) >= 1:
-            false_list.append(data['website'])
-        return False, false_list
+    if data['company'] in black_list:
+        return 'blocked', false_list
     else:
-        return True
+        fal_num = 0
+        if data['blood_group'] not in blood_types:
+            fal_num += 1
+            false_list.append('blood_group')
+
+        if '@' not in data['mail']:
+            fal_num += 1
+            false_list.append('mail')
+
+        if 2 <= len(data['name']) <= 30:
+            pass
+        else:
+            fal_num += 1
+            false_list.append('name')
+        
+        if data['website'] == None:
+            fal_num += 1
+            false_list.append('website')
+
+    if fal_num > 1:
+        return False, false_list
+    elif fal_num == 1:
+        return False, false_list[0]
+    elif fal_num == 0:
+        return True, false_list
+
+
+result = create_user(user_data)
+pprint(result)
