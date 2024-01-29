@@ -5,12 +5,11 @@ input = sys.stdin.readline
 for i in range(10):
     N = int(input())
     building_list = list(map(int,input().split()))
-    for num in range(2, len(building_list) - 1):
-        show_list = []
-        for j in range(2):
-            if building_list[num] - building_list[num - j] <= 0 or building_list[num] - building_list[num + j] <= 0:
-                break
-            else:
-                building_list[num] - building_list[num - j]
-                building_list[num] - building_list[num + j]
-
+    count_room = 0
+    for k in range(2, N-2):
+        near_by = [j for j in building_list[k-2 : k+3]]
+        if (max(near_by) == building_list[k]):
+            building = near_by[2]
+            near_by.pop(2)
+            count_room += building - max(near_by)
+    print(f'#{i+1} {count_room}')
