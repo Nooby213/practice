@@ -10,29 +10,70 @@
 '''
 
 num_list = [int(i) for i in str(input())]
-num_dict ={str(i) : 0 for i in num_list}
+# num_dict ={str(i) : 0 for i in num_list}
+num_dict ={l : 0 for l in num_list}
+for j in num_list:
+    if num_list.count(j) == 6:  # triplet 2개
+        print('baby-gin')
+        break
 
-if len(num_dict) == 1 or len(num_dict) == 2:    # triplet 2개
-    print('baby-gin')
-
-elif len(num_dict) == 3 or len(num_dict) == 4:  # trilpet 1개 run 1개
-    for num in num_list:
-        num_dict[str(num)] += 1
-
-    for key, value in num_dict.items():
-        if value % 3 == 0:
-            key_list = [int(j) for j in num_dict.keys()]
-            key_list.remove(int(key))
-            key_list.sort()
-            if sum(key_list) == (key_list[1] * 3):
+    elif 3 <= num_list.count(j) <6: # triplet 2개/ triplet 1개, run 1개
+        num_copy = num_list.copy()
+        for _ in range(3):
+            num_copy.remove(j)
+        num_copy.sort()
+        if num_copy[1] * 3 == sum(num_copy):
+            print('baby-gin')
+            break
+    
+    else:   # run 2개
+        if len(num_dict) == 3: 
+            num_list.sort()
+            if num_list[1] * 3 == sum(num_list):
                 print('baby-gin')
                 break
-        else:
-            key_list = [int(k) for k in num_dict.keys()]
-            key_list.sort()
-            if sum(key_list) == (key_list[1] * 3):
+
+        elif len(num_dict) == 4: 
+            num_list.sort()
+            if num_list[1] * 3 == sum(num_list[:2],num_list[3]):
                 print('baby-gin')
                 break
+
+        elif (len(num_dict) == 5) or (len(num_dict) == 6): 
+            num_list.sort()
+            if num_list[1] * 3 == sum(num_list[:3]) and num_list[4] * 3 == sum(num_list[3:]):
+                print('baby-gin')
+                break
+
+
+
+
+
+
+
+
+
+# if len(num_dict) == 1 or len(num_dict) == 2:    # triplet 2개
+#     print('baby-gin')
+
+# elif len(num_dict) == 3 or len(num_dict) == 4:  # trilpet 1개 run 1개
+#     for num in num_list:
+#         num_dict[str(num)] += 1
+
+#     for key, value in num_dict.items():
+#         if value % 3 == 0:
+#             key_list = [int(j) for j in num_dict.keys()]
+#             key_list.remove(int(key))
+#             key_list.sort()
+#             if sum(key_list) == (key_list[1] * 3):
+#                 print('baby-gin')
+#                 break
+#         else:
+#             key_list = [int(k) for k in num_dict.keys()]
+#             key_list.sort()
+#             if sum(key_list) == (key_list[1] * 3):
+#                 print('baby-gin')
+#                 break
 
 # else:
 
