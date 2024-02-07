@@ -10,12 +10,11 @@ T = int(input())
 for t in range(1, T + 1):
     N = int(input())
     D = list(map(int, input().split()))
-    money = 0
-    cnt = 0
-    for i in range(N):
-        if i < D.index(max(D[i:])):
-            money += max(D[i:])-D[i]
-            cnt += 1
-    print(cnt)
-    print(f'#{t} {money}')
-
+    price = 0
+    max_price = D[-1]
+    for i in range(N - 2, -1, -1):  # 최댓값이 커지면 바꾸니까 뒤에서부터
+        if max_price < D[i]:
+            max_price = D[i]
+        else:
+            price += max_price - D[i]
+    print(f'#{t} {price}')
