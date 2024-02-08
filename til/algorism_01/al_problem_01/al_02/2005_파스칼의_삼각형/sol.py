@@ -10,13 +10,13 @@ T = int(input())
 
 for t in range(1, T + 1):
     N = int(input())
-    tri = [[0] * i for i in range(1, N + 1)]
+    tri = [[1] * i for i in range(1, N + 1)]
     # print(tri)
 
-    for i in range(N):  # 양 쪽은 1
-        for j in 0, i:
-            tri[i][j] = 1
-    # print(tri)
+    # for i in range(N):  # 양 쪽은 1  리스트를 0으로 만들었다면
+    #     for j in 0, i:
+    #         tri[i][j] = 1
+    # # print(tri)
 
     for i in range(2, N):   # 가운데 숫자만들기
         for j in range(1, i):
