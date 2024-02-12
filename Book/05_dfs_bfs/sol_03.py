@@ -1,3 +1,4 @@
+from pprint import pprint as pp
 # 음료수 얼려먹기
 # N * M 크기의 얼음틀
 # 구멍이 뚫려 있는 부분은 0
@@ -13,8 +14,6 @@
 
 
 def ice(graph, v1, v2):
-    global N
-    global M
 
     if v1 < 0 or v1 >= N or v2 < 0 or v2 >= M:
         return False
@@ -43,6 +42,7 @@ cnt = 0
 for i in range(N):
     for j in range(M):
         if ice(icebox, i, j):
+            # pp(icebox)
             cnt += 1
 
 print(cnt)
