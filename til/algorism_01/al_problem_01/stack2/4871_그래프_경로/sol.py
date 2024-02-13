@@ -27,7 +27,7 @@ for t in range(1, T + 1):
     for _ in range(E):
         a, b = map(int, input().split())
         adj[a].append(b)
-        adj[b].append(a)
+        # adj[b].append(a)
     S, G = map(int, input().split())
     stack = []
     dfs(S)
