@@ -27,7 +27,7 @@ for t in range(1, 11):
                         post += stack.pop()
                 if stack:
                     post += stack.pop()
-                stack.append(i)   # + / * 밖에 없으니까 굳이 뺏다 넣었다 안해도 됌
+                stack.append(i)  
 
     while stack:    # 스택에 남은 애들 정리
         post += stack.pop()
