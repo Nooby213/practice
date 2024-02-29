@@ -9,14 +9,14 @@ def turn(m):
     if m == M:
         max_num = max(int(''.join(num)), max_num)
         return
-
+    if (m, num) in visited:
+        return
     for i in range(num_len - 1):
         for j in range(i + 1, num_len):
             num[i], num[j] = num[j], num[i]
-            char = ''.join(num)
-            if (m, num) not in visited:
-                turn(m + 1)
-                visited.append((m, char))
+            temp = num[:]
+            visited.append((m, temp))
+            turn(m + 1)
             num[i], num[j] = num[j], num[i]
 
 
