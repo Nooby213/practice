@@ -34,7 +34,8 @@
   - $ django-admin startproject firstpjt(프로젝트 이름) . 
 - Django 서버 실행
   - $ python manage.py runserver
-  - 
+- requirements.txt 다운로드
+  - pip install requirements.txt
 ### Django 프로젝트 생성 루틴
 1. 가상 환경 생성
 2. 가상 환경 활성화
